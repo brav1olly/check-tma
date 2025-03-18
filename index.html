@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h1>Привет, <span id="user_name"></span>!</h1>
+    <button id="send_data">Отправить данные</button>
+
+    <div class="user-id"></div>
+    <div class="user-first-name"></div>
+    <div class="user-last-name"></div>
+    <div class="user-name"></div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Растягиваем WebApp на весь экран
+
+        const userData = tg.initDataUnsafe?.user || {};
+        document.getElementById("user_name").textContent = userData.first_name || "Гость";
+        
+        document.querySelector('.user-id').textContent = userData.id
+        document.querySelector('.user-first-name').textContent = userData.first_name
+        document.querySelector('.user-last-name').textContent = userData.last_name        
+        document.querySelector('.user-name').textContent = userData.username
+    </script>
+</body>
+</html>
